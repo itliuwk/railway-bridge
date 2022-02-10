@@ -31,7 +31,7 @@
               <a-button type="primary" @click="searchQuery" icon="search">
                 查询
               </a-button>
-              <a-button type="primary" @click="searchReset" icon="reload" style="margin-left: 8px">
+              <a-button  @click="searchReset" icon="reload" style="margin-left: 8px">
                 重置
               </a-button>
               <a @click="handleToggleSearch" style="margin-left: 8px">

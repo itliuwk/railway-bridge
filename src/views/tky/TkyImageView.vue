@@ -15,17 +15,17 @@
         <a-button @click="handleCurrentChange(-1)" class="changeImg">
           <a-icon type="left" />
         </a-button>
-        <div class="imgbox" :class="imgList.length>6?'':'min'" ref="imgbox">
+        <div class="imgbox" :class="imgList.length > 6 ? '' : 'min'" ref="imgbox">
           <img
-            v-for="(item,index) in imgList"
+            v-for="(item, index) in imgList"
             :key="item"
             :src="item"
-            :class="{ changeColor:changeColor == index}"
-            @click="handlerImg(item,index)"
+            :class="{ changeColor: changeColor == index }"
+            @click="handlerImg(item, index)"
           />
         </div>
         <a-button @click="handleCurrentChange(1)" class="changeImg right">
-          <a-icon type="left" style="transform: rotate(180deg);" />
+          <a-icon type="left" style="transform: rotate(180deg)" />
         </a-button>
       </div>
       <div class="ctr-box">
@@ -69,9 +69,9 @@ export default {
         alignItems: "center",
         justifyContent: "center",
         textAlign: "center",
-        height: "650px"
+        height: "650px",
       },
-      downUrl: ""
+      downUrl: "",
     };
   },
   props: {
@@ -79,39 +79,38 @@ export default {
       //弹框名称
       type: String,
       required: false,
-      default: "图片预览"
+      default: "图片预览",
     },
     filePreviewShow: {
       //是否显示
       type: Boolean,
       required: false,
-      default: false
+      default: false,
     },
     imgList: {
       //图像数组
       type: Array,
       required: true,
-      default: function() {
+      default: function () {
         return [];
-      }
+      },
     },
     currentImg: {
       //当前图像
       type: String,
       required: false,
-      default: ""
+      default: "",
     },
     currentIndex: {
       //当前图像下标
       type: Number,
       required: false,
-      default: 0
-    }
-    
+      default: 0,
+    },
   },
   watch: {
     filePreviewShow(newv) {
-      debugger
+      debugger;
       if (newv) {
         this.imgListShow = this.filePreviewShow;
         this.imgList = this.trimSpace(this.imgList);
@@ -121,14 +120,12 @@ export default {
         } else {
           this.changeColor = this.currentIndex;
           if (this.currentImg) {
-            this.changeColor = this.imgList.findIndex(
-              a => a === this.currentImg
-            );
+            this.changeColor = this.imgList.findIndex((a) => a === this.currentImg);
           }
           setTimeout(() => {
             this.scrollImg(this.changeColor - 5, this.changeColor < 5);
           }, 500);
-          debugger
+          debugger;
           this.furl = this.imgList[this.changeColor];
           this.handlerImg(this.furl, this.changeColor);
         }
@@ -138,7 +135,7 @@ export default {
         window.removeEventListener("mousewheel", this.handleScroll, true) ||
           window.removeEventListener("DOMMouseScroll", this.handleScroll, true);
       }
-    }
+    },
   },
   mounted() {
     setTimeout(() => {
@@ -146,16 +143,12 @@ export default {
     }, 500);
   },
   methods: {
-    onCancel(){
-      this.$emit('parentMethod')
+    onCancel() {
+      this.$emit("parentMethod");
     },
     trimSpace(array) {
       for (var i = 0; i < array.length; i++) {
-        if (
-          array[i] == " " ||
-          array[i] == null ||
-          typeof array[i] == "undefined"
-        ) {
+        if (array[i] == " " || array[i] == null || typeof array[i] == "undefined") {
           array.splice(i, 1);
           i = i - 1;
         }
@@ -182,8 +175,7 @@ export default {
         document.getElementsByClassName("originStyle")[0] &&
         document.getElementsByClassName("originStyle")[0].style
       ) {
-        document.getElementsByClassName("originStyle")[0].style.position =
-          "relative";
+        document.getElementsByClassName("originStyle")[0].style.position = "relative";
       }
     },
     handleCurrentChange(val) {
@@ -215,12 +207,8 @@ export default {
       if (e.button == 0) {
         this.canDrag = true;
         //获取需要拖动节点的坐标
-        this.offset_x = document.getElementsByClassName(
-          "originStyle"
-        )[0].offsetLeft; //x坐标
-        this.offset_y = document.getElementsByClassName(
-          "originStyle"
-        )[0].offsetTop; //y坐标
+        this.offset_x = document.getElementsByClassName("originStyle")[0].offsetLeft; //x坐标
+        this.offset_y = document.getElementsByClassName("originStyle")[0].offsetTop; //y坐标
         //获取当前鼠标的坐标
         this.mouse_x = e.pageX;
         this.mouse_y = e.pageY;
@@ -236,13 +224,14 @@ export default {
         //设置移动后的元素坐标
         let now_x = this.offset_x + _x + "px";
         let now_y = this.offset_y + _y + "px";
-        document.getElementsByClassName("originStyle")[0].style.position =
-          "absolute";
+        document.getElementsByClassName("originStyle")[0].style.position = "absolute";
         document.getElementsByClassName("originStyle")[0].style.top = now_y;
         document.getElementsByClassName("originStyle")[0].style.left = now_x;
       }
     },
-    mouseLeave(e) {     this.canDrag = false;     window.removeEventListener("mousewheel", this.handleScroll, true) ||
+    mouseLeave(e) {
+      this.canDrag = false;
+      window.removeEventListener("mousewheel", this.handleScroll, true) ||
         window.removeEventListener("DOMMouseScroll", this.handleScroll, true);
     },
     stop(e) {
@@ -254,40 +243,15 @@ export default {
         return;
       }
       this.$refs.singleImg.style.Transform =
-        "rotate(" +
-        this.currentRotate +
-        "deg)" +
-        "scale(" +
-        this.currentScale +
-        ")";
+        "rotate(" + this.currentRotate + "deg)" + "scale(" + this.currentScale + ")";
       this.$refs.singleImg.style.webkitTransform =
-        "rotate(" +
-        this.currentRotate +
-        "deg)" +
-        "scale(" +
-        this.currentScale +
-        ")";
+        "rotate(" + this.currentRotate + "deg)" + "scale(" + this.currentScale + ")";
       this.$refs.singleImg.style.MozTransform =
-        "rotate(" +
-        this.currentRotate +
-        "deg)" +
-        "scale(" +
-        this.currentScale +
-        ")";
+        "rotate(" + this.currentRotate + "deg)" + "scale(" + this.currentScale + ")";
       this.$refs.singleImg.style.msTransform =
-        "rotate(" +
-        this.currentRotate +
-        "deg)" +
-        "scale(" +
-        this.currentScale +
-        ")";
+        "rotate(" + this.currentRotate + "deg)" + "scale(" + this.currentScale + ")";
       this.$refs.singleImg.style.transform =
-        "rotate(" +
-        this.currentRotate +
-        "deg)" +
-        "scale(" +
-        this.currentScale +
-        ")";
+        "rotate(" + this.currentRotate + "deg)" + "scale(" + this.currentScale + ")";
     },
     //旋转
     rotateL() {
@@ -314,13 +278,13 @@ export default {
       }
     },
     downloadIamge(imgsrc, name) {
-      debugger
+      debugger;
       //下载图片地址和图片名
       var image = new Image();
       // 解决跨域 Canvas 污染问题
       image.src = imgsrc + "?v=" + Math.random(); // 处理缓存
       image.crossOrigin = "*"; // 支持跨域图片
-      image.onload = function() {
+      image.onload = function () {
         var canvas = document.createElement("canvas");
         canvas.width = image.width;
         canvas.height = image.height;
@@ -337,13 +301,13 @@ export default {
     },
     download() {
       this.downloadIamge(this.furl, new Date().getTime());
-    }
-  }
+    },
+  },
 };
 </script>
-<style lang="less" scoped >
+<style lang="less" scoped>
 .picPreview {
-  /deep/  .ant-modal {
+  /deep/ .ant-modal {
     width: 1500px !important;
   }
   /deep/ .ant-modal-footer {

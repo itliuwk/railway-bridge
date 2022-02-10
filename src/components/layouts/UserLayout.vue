@@ -5,7 +5,7 @@
         <div class="header">
           <a href="/">
             <!-- <img src="~@/assets/logo.svg" class="logo" alt="logo">-->
-            <span class="title">桥梁病害智能检测系统数据管理平台</span>
+            <span class="title">重载铁路桥梁空地协同保障大数据管理平台</span>
           </a>
         </div>
         <div class="desc">

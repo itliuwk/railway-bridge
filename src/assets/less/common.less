@@ -1,12 +1,13 @@
-
 /*列表上方操作按钮区域*/
 .ant-card-body .table-operator {
   margin-bottom: 8px;
 }
+
 /** Button按钮间距 */
 .table-operator .ant-btn {
   margin: 0 8px 8px 0;
 }
+
 .table-operator .ant-btn-group .ant-btn {
   margin: 0;
 }
@@ -14,6 +15,7 @@
 .table-operator .ant-btn-group .ant-btn:last-child {
   margin: 0 8px 8px 0;
 }
+
 /*列表td的padding设置 可以控制列表大小*/
 .ant-table-tbody .ant-table-row td {
   padding-top: 15px;
@@ -36,21 +38,34 @@
   height: 90% !important;
   overflow-y: hidden
 }
+
 /*列表中有图片的加这个样式 参考用户管理*/
 .anty-img-wrap {
   height: 25px;
   position: relative;
 }
-.anty-img-wrap > img {
+
+.anty-img-wrap>img {
   max-height: 100%;
 }
+
 /*列表中范围查询样式*/
-.query-group-cust{width: calc(50% - 10px)}
-.query-group-split-cust:before{content:"~";width: 20px;display: inline-block;text-align: center}
+.query-group-cust {
+  width: calc(50% - 10px)
+}
+
+.query-group-split-cust:before {
+  content: "~";
+  width: 20px;
+  display: inline-block;
+  text-align: center
+}
 
 
 /*erp风格子表外框padding设置*/
-.ant-card-wider-padding.cust-erp-sub-tab>.ant-card-body{padding:5px 12px}
+.ant-card-wider-padding.cust-erp-sub-tab>.ant-card-body {
+  padding: 5px 12px
+}
 
 /* 内嵌子表背景颜色 */
 .j-inner-table-wrapper /deep/ .ant-table-expanded-row .ant-table-wrapper .ant-table-tbody .ant-table-row {
@@ -58,4 +73,46 @@
 }
 
 /**隐藏样式-modal确定按钮 */
-.jee-hidden{display: none}
+.jee-hidden {
+  display: none
+}
+
+
+.ant-table-thead>tr>th {
+  background: #465a9b !important;
+  color: #ffffff;
+
+}
+
+.add_btn,
+.add_btn:hover,
+.add_btn:active,
+.add_btn:focus {
+  background: rgb(221, 229, 255);
+  border: none;
+  color: rgb(62, 90, 190);
+}
+
+.export_btn,
+.export_btn:hover,
+.export_btn:active,
+.export_btn:focus {
+  background: rgb(255, 243, 210);
+  border: none;
+  color: rgb(249, 174, 13)
+}
+
+.import_btn,
+.import_btn:hover,
+.import_btn:active,
+.import_btn:focus {
+  background: rgb(229, 249, 248);
+  color: rgb(45, 180, 187);
+  border: none;
+}
+
+.j-super-query-box .ant-btn-primary {
+  background: rgb(236, 245, 255);
+  color: rgb(25, 137, 250);
+  border: none;
+}

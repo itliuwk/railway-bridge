@@ -13,7 +13,7 @@
 
     </div> -->
     <!-- <img :src="imgSrc" style="width:100%; margin-top: 1%; height: 100%;"/> -->
-    <p>桥梁管理系统</p>
+    <p>重载铁路桥梁空地协同保障大数据管理平台</p>
   </div>
 </template>
 

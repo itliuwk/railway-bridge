@@ -23,7 +23,7 @@
       />
 
       <span v-if="device === 'desktop'" style="vertical-align: super"
-        >欢迎进入桥梁管理系统</span
+        >欢迎进入重载铁路桥梁空地协同保障大数据管理平台</span
       >
       <!-- <span v-else>Jeecg-Boot</span> -->
 

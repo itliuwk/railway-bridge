@@ -152,15 +152,65 @@ export default {
 
 <!-- update_begin author:sunjianlei date:20190530 for: 选中首页的时候不显示背景颜色 -->
 <style lang="less">
+// .ant-menu.ant-menu-root {
+//   background-color: #081543;
+//   & > .ant-menu-item,
+//   .ant-menu-submenu {
+//     background-color: transparent;
+
+//     & > a,
+//     & > a:hover {
+//       color: rgba(255, 255, 255, 0.7);
+//     }
+//   }
+//   .ant-menu-sub {
+//     background-color: #081543;
+//     & > a,
+//     & > a:hover {
+//       color: rgba(255, 255, 255, 0.7);
+//     }
+//   }
+
+//   .ant-menu-item-selected {
+//     background: #1a2857 !important;
+//     & > a,
+//     & > a:hover {
+//       // color: @primary-color;
+//       color: #fff !important;
+//     }
+//     &::after {
+//       opacity: 0;
+//     }
+//   }
+
+//   &.ant-menu-dark > .ant-menu-item:first-child {
+//     & > a,
+//     & > a:hover {
+//       color: rgba(255, 255, 255, 0.7);
+//     }
+
+//     &.ant-menu-item-selected {
+//       & > a,
+//       & > a:hover {
+//         color: rgba(255, 255, 255, 1);
+//       }
+//     }
+//   }
+//   .ant-menu-item {
+//     color: #fff;
+//   }
+// }
 .ant-menu.ant-menu-root {
   background-color: #081543;
-  & > .ant-menu-item {
-    background-color: transparent;
-
+  color: rgba(255, 255, 255, 0.7);
+  .ant-menu-item {
     & > a,
     & > a:hover {
       color: rgba(255, 255, 255, 0.7);
     }
+  }
+  .ant-menu-item:active {
+    background-color: #081543;
   }
 
   .ant-menu-item-selected {
@@ -174,19 +224,11 @@ export default {
       opacity: 0;
     }
   }
-
-  &.ant-menu-dark > .ant-menu-item:first-child {
-    & > a,
-    & > a:hover {
-      color: rgba(255, 255, 255, 0.65);
-    }
-
-    &.ant-menu-item-selected {
-      & > a,
-      & > a:hover {
-        color: rgba(255, 255, 255, 1);
-      }
-    }
+}
+.ant-menu .ant-menu-submenu .ant-menu-sub {
+  background-color: #081543;
+  .ant-menu-item:active {
+    background-color: #081543;
   }
 }
 </style>

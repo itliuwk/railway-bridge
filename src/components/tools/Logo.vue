@@ -20,7 +20,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: "桥梁管理系统",
+      default: "重载铁路桥梁空地协同保障大数据管理平台",
       required: false,
     },
     showTitle: {
