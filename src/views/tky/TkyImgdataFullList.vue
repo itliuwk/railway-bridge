@@ -402,7 +402,6 @@ export default {
     async getFullImage(item,record) {
       let object = Object.assign({}, record)
       this.getImageCode = ''
-       debugger
       let parameter = {
         //name: object.name,
         name: item,
@@ -415,7 +414,6 @@ export default {
 
         //读取病害坐标信息
        await getAction('/moudle/tkyDisease/getDiseaseCrack',this.queryParam).then(res=>{
-              debugger
               this.crackData = res.result
               let map = {
                 name : this.imageName,
