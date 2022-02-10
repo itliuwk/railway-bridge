@@ -7,21 +7,21 @@
           <div class="des-card">
             <div style="width: 100%; line-height: 35px; margin-bottom: 20px">
               <span>飞行总里程</span>
-              <Input value="56846" disabled style="width: 85%"></Input> m
+              <Input value="56846" disabled style="width: 82%"></Input> m
             </div>
             <div style="width: 100%; line-height: 35px; margin-bottom: 20px">
               <span>本年飞行里程</span>
-              <Input value="568" disabled style="width: 85%"></Input> m
+              <Input value="568" disabled style="width: 82%"></Input> m
             </div>
           </div>
           <div class="des-card">
             <div style="width: 100%; line-height: 35px; margin-bottom: 20px">
               <span>飞行总时间</span>
-              <Input value="56846" disabled style="width: 85%"></Input> min
+              <Input value="56846" disabled style="width: 82%"></Input> min
             </div>
             <div style="width: 100%; line-height: 35px; margin-bottom: 20px">
               <span>本年飞行时间</span>
-              <Input value="568" disabled style="width: 85%"></Input> min
+              <Input value="568" disabled style="width: 82%"></Input> min
             </div>
           </div>
         </div>
