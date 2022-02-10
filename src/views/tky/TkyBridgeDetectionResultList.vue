@@ -265,7 +265,6 @@
               this.loading = false
               return false
             }
-            debugger;
             //debugger
             let parameter = {
               id : record.id,

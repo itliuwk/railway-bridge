@@ -24,7 +24,7 @@
               <span style="float: left;overflow: hidden;" class="table-page-search-submitButtons">
             <a-col :md="12" :sm="24">
                <a-button type="primary" @click="searchQuery" icon="search" style="margin-left: 21px">查询</a-button>
-              <a-button type="primary" @click="searchReset" icon="reload" style="margin-left: 8px">重置</a-button>
+              <a-button  @click="searchReset" icon="reload" style="margin-left: 8px">重置</a-button>
             </a-col>
           </span>
             </a-row>
@@ -32,12 +32,12 @@
         </div>
         <!-- 操作按钮区域 -->
         <div class="table-operator" style="margin: 5px 0 10px 2px">
-          <a-button @click="handleAdd" type="primary" icon="plus">新建角色</a-button>
+          <a-button @click="handleAdd" type="primary" class="add_btn" icon="plus">新建角色</a-button>
           <!--<a-button @click="handleEdit(model1)" type="primary" icon="plus">角色编辑</a-button>-->
           <a-upload name="file" :showUploadList="false" :multiple="false" :headers="tokenHeader" :action="importExcelUrl" @change="handleImportExcel">
-            <a-button type="primary" icon="import">导入</a-button>
+            <a-button type="primary" class="import_btn" icon="import">导入</a-button>
           </a-upload>
-          <a-button type="primary" icon="download" @click="handleExportXls('角色管理')">导出</a-button>
+          <a-button type="primary" icon="download" class="export_btn" @click="handleExportXls('角色管理')">导出</a-button>
         </div>
 
         <div class="ant-alert ant-alert-info" style="margin-bottom: 16px;">

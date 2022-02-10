@@ -13,7 +13,7 @@
           <span style="float: left;overflow: hidden;" class="table-page-search-submitButtons">
             <a-col :md="6" :sm="24">
              <a-button type="primary" @click="searchQuery" icon="search" style="margin-left: 18px">查询</a-button>
-              <a-button type="primary" @click="searchReset" icon="reload" style="margin-left: 8px">重置</a-button>
+              <a-button  @click="searchReset" icon="reload" style="margin-left: 8px">重置</a-button>
             </a-col>
           </span>
         </a-row>
@@ -22,8 +22,8 @@
     <!-- 操作按钮区域 -->
     <div class="table-operator" :md="24" :sm="24" style="margin-top: -15px">
       <!--<a-button @click="handleEdit" type="primary" icon="edit" style="margin-top: 16px">用户编辑</a-button>-->
-      <a-button @click="handleAddUserDepart" type="primary" icon="plus">添加已有用户</a-button>
-      <a-button @click="handleAdd" type="primary" icon="plus" style="margin-top: 16px">新建用户</a-button>
+      <a-button @click="handleAddUserDepart" type="primary" class="add_btn" icon="plus">添加已有用户</a-button>
+      <a-button @click="handleAdd" type="primary" icon="plus" class="export_btn" style="margin-top: 16px">新建用户</a-button>
 
       <a-dropdown v-if="selectedRowKeys.length > 0">
         <a-menu slot="overlay">

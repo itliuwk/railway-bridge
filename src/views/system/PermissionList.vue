@@ -3,7 +3,7 @@
 
     <!-- 操作按钮区域 -->
     <div class="table-operator">
-      <a-button @click="handleAdd" type="primary" icon="plus">新增</a-button>
+      <a-button @click="handleAdd" type="primary" class="add_btn" icon="plus">新增</a-button>
       <a-button
         @click="batchDel"
         v-if="selectedRowKeys.length > 0"
