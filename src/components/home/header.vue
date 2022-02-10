@@ -39,7 +39,7 @@ export default {
   name: "ch-header",
   methods: {
     goPage() {
-      this.$router.push('index')
+      this.$router.push('/dashboard/analysis')
     }
   },
   mounted() {

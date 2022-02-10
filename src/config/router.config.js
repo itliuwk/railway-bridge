@@ -367,7 +367,7 @@ export const constantRouterMap = [
       {
         path: 'index',
         name: 'largeScreen',
-        component: () => import('@/views/user/largeScreen')
+        component: () => import('@/views/largeScreen')
       }
     ]
   },

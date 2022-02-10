@@ -81,14 +81,14 @@
               <div class="left-title">
                 <img
                   alt=""
-                  src="../../assets/image/形状8.png"
+                  src="../assets/image/形状8.png"
                   style="margin-left: -12px"
                   width="45"
                 />
                 <span>检测信息统计</span>
               </div>
               <div class="right-image">
-                <img alt="" src="../../assets/image/组45.png" />
+                <img alt="" src="../assets/image/组45.png" />
               </div>
             </div>
             <div class="b-c-content">
@@ -105,14 +105,14 @@
               <div class="left-title">
                 <img
                   alt=""
-                  src="../../assets/image/形状8.png"
+                  src="../assets/image/形状8.png"
                   style="margin-left: -12px"
                   width="45"
                 />
                 <span>病害伤损等级统计</span>
               </div>
               <div class="right-image">
-                <img alt="" src="../../assets/image/组45.png" />
+                <img alt="" src="../assets/image/组45.png" />
               </div>
             </div>
             <div class="b-c-content">
@@ -130,14 +130,14 @@
               <div class="left-title">
                 <img
                   alt=""
-                  src="../../assets/image/形状8.png"
+                  src="../assets/image/形状8.png"
                   style="margin-left: -12px"
                   width="45"
                 />
                 <span>病害伤损等级统计</span>
               </div>
               <div class="right-image">
-                <img alt="" src="../../assets/image/组45.png" />
+                <img alt="" src="../assets/image/组45.png" />
               </div>
             </div>
             <div class="b-c-content" style="position: relative">
@@ -159,14 +159,14 @@
               <div class="left-title">
                 <img
                   alt=""
-                  src="../../assets/image/形状8.png"
+                  src="../assets/image/形状8.png"
                   style="margin-left: -12px"
                   width="45"
                 />
                 <span>典型病害图片展示</span>
               </div>
               <div class="right-image">
-                <img alt="" src="../../assets/image/组45.png" />
+                <img alt="" src="../assets/image/组45.png" />
               </div>
             </div>
             <div class="b-c-content" style="overflow-y: auto">
@@ -573,8 +573,8 @@ export default {
           height: 180,
         },
       },
-      url: "../../assets/image/1.PNG",
-      srcList: ["../../assets/image/1.PNG", "../../assets/image/1.PNG"],
+      url: "../assets/image/1.PNG",
+      srcList: ["../assets/image/1.PNG", "../assets/image/1.PNG"],
       popupDisplay: false,
       popupOpcatity: 1.0,
       popupLeft: "",
@@ -737,7 +737,7 @@ export default {
     addMarker(data) {
       for (let i = 0; i <= data.length; i++) {
         let item = data[i];
-        let img = "../../../assets/image/map_icon.png",
+        let img = "../../assets/image/map_icon.png",
           width = 25,
           height = 25;
         let objs = {
@@ -882,7 +882,7 @@ export default {
       left: 30px;
       width: 200px;
       height: 590px;
-      background-image: url("../../assets/image/无人机.png");
+      background-image: url("../assets/image/无人机.png");
       background-repeat: no-repeat;
       background-position: center center;
       background-size: cover;
@@ -931,7 +931,7 @@ export default {
       .r-des-card {
         width: 209px;
         height: 270px;
-        background-image: url("../../assets/image/右侧线框.png");
+        background-image: url("../assets/image/右侧线框.png");
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center center;
@@ -959,7 +959,7 @@ export default {
           .circle {
             width: 100%;
             height: 170px;
-            background-image: url("../../assets/image/ce.gif");
+            background-image: url("../assets/image/ce.gif");
             background-repeat: no-repeat;
             background-position: center center;
             background-size: 170px;
@@ -1029,7 +1029,7 @@ export default {
       .r-des-card:last-child {
         margin-top: 20px;
         .circle {
-          background-image: url("../../assets/image/ce.gif");
+          background-image: url("../assets/image/ce.gif");
 
           .bg-color {
             color: #eccf48;
@@ -1061,7 +1061,7 @@ export default {
       .b-card {
         width: 450px;
         height: 100%;
-        background-image: url("../../assets/image/底部框.png");
+        background-image: url("../assets/image/底部框.png");
         background-repeat: no-repeat;
         background-size: 100% 250px;
         //border-right: 1.5px solid rgba(26, 118, 131, 0.8);
@@ -1070,7 +1070,7 @@ export default {
         .b-c-header {
           width: 100%;
           height: 50px;
-          background-image: url("../../assets/image/白线.png");
+          background-image: url("../assets/image/白线.png");
           background-repeat: no-repeat;
           background-position: bottom;
           //padding: 0 20px;
@@ -1139,7 +1139,7 @@ export default {
       left: 0;
       width: 140px;
       height: 179px;
-      background-image: url("../../assets/image/链接.png");
+      background-image: url("../assets/image/链接.png");
     }
     .content-boxs {
       width: 321px;
@@ -1147,7 +1147,7 @@ export default {
       position: absolute;
       right: 0;
       top: -35px;
-      background-image: url("../../assets/image/简介框.png");
+      background-image: url("../assets/image/简介框.png");
       background-repeat: no-repeat;
       background-size: cover;
       padding: 12px;
