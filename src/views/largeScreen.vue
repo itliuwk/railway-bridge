@@ -241,7 +241,7 @@
     <tky-image-view
       :filePreviewShow="isShowImg"
       :imgList="srcList"
-      title='病害图'
+      title="病害图"
       :currentIndex="currentIndex"
       @parentMethod="cancel"
     ></tky-image-view>
@@ -252,6 +252,7 @@
 import headerCH from "@/components/home/header";
 import highcharts from "@/components/home/highcharts";
 import BIM from "@/components/home/BIM";
+import Vue from "vue";
 // import  '@supermap/vue-iclient3d-webgl/dist/styles/vue-iclient3d-webgl.min.css';\
 import {
   getBridgeDetectionCountMil,
@@ -260,6 +261,7 @@ import {
   getDetectionLengthCount,
   getFlyMileCount,
   getFlyTimeCount,
+  queryDiseaseUrlList,
 } from "@/api/largeScreen.js";
 import TkyImageView from "./tky/TkyImageView.vue";
 export default {
@@ -280,8 +282,6 @@ export default {
       flyTimeCount: {},
       lengthCount: {},
       diseaseCount: 0,
-      url:
-        "https://pro-nianhua-bucket-deepxi.obs.cn-southwest-2.myhuaweicloud.com/dr-prd%2Fconsole%2Ffile%2Ff5771901-511f-4fed-bdf9-184e346920ce.jpg",
       srcList: [
         "https://pro-nianhua-bucket-deepxi.obs.cn-southwest-2.myhuaweicloud.com/dr-prd%2Fconsole%2Ffile%2Ff5771901-511f-4fed-bdf9-184e346920ce.jpg",
         "https://pro-nianhua-bucket-deepxi.obs.cn-southwest-2.myhuaweicloud.com/dr-prd%2Fconsole%2Ffile%2Ff5771901-511f-4fed-bdf9-184e346920ce.jpg",
@@ -548,6 +548,15 @@ export default {
       });
       getFlyTimeCount().then((res) => {
         this.flyTimeCount = res.result;
+      });
+      queryDiseaseUrlList().then((res) => {
+        let data = [];
+        for (let index = 0; index < res.result.length; index++) {
+          const element = res.result[index];
+          data.push(Vue.prototype.API_BASE_URL + "/" + element);
+        }
+        console.log("res.result: ", data);
+        this.srcList = data;
       });
     },
     initCharts1(data) {
