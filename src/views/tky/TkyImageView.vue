@@ -110,7 +110,6 @@ export default {
   },
   watch: {
     filePreviewShow(newv) {
-      debugger;
       if (newv) {
         this.imgListShow = this.filePreviewShow;
         this.imgList = this.trimSpace(this.imgList);
@@ -125,7 +124,6 @@ export default {
           setTimeout(() => {
             this.scrollImg(this.changeColor - 5, this.changeColor < 5);
           }, 500);
-          debugger;
           this.furl = this.imgList[this.changeColor];
           this.handlerImg(this.furl, this.changeColor);
         }
@@ -278,7 +276,6 @@ export default {
       }
     },
     downloadIamge(imgsrc, name) {
-      debugger;
       //下载图片地址和图片名
       var image = new Image();
       // 解决跨域 Canvas 污染问题

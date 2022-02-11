@@ -7,21 +7,32 @@
           <div class="des-card">
             <div style="width: 100%; line-height: 35px; margin-bottom: 20px">
               <span>飞行总里程</span>
-              <Input value="56846" disabled style="width: 82%"></Input> m
+              <Input :value="flyMileCount.all || 0" disabled style="width: 82%"></Input> m
             </div>
             <div style="width: 100%; line-height: 35px; margin-bottom: 20px">
               <span>本年飞行里程</span>
-              <Input value="568" disabled style="width: 82%"></Input> m
+              <Input
+                :value="flyMileCount.thisYear || 0"
+                disabled
+                style="width: 82%"
+              ></Input>
+              m
             </div>
           </div>
           <div class="des-card">
             <div style="width: 100%; line-height: 35px; margin-bottom: 20px">
               <span>飞行总时间</span>
-              <Input value="56846" disabled style="width: 82%"></Input> min
+              <Input :value="flyTimeCount.all || 0" disabled style="width: 82%"></Input>
+              min
             </div>
             <div style="width: 100%; line-height: 35px; margin-bottom: 20px">
               <span>本年飞行时间</span>
-              <Input value="568" disabled style="width: 82%"></Input> min
+              <Input
+                :value="flyTimeCount.thisYear || 0"
+                disabled
+                style="width: 82%"
+              ></Input>
+              min
             </div>
           </div>
         </div>
@@ -33,7 +44,7 @@
             <div class="dse-c-main">
               <div class="circle">
                 <p>
-                  <span class="bg-color">32%</span>
+                  <span class="bg-color">{{ bridgeCount.proportion || 0 }}%</span>
                   <br />
                   <span class="dse-color">检测占比</span>
                 </p>
@@ -41,11 +52,11 @@
               <div class="content-cir">
                 <div class="c-c-l">
                   <div class="c-header">桥梁总数</div>
-                  <div class="c-content">98</div>
+                  <div class="c-content">{{ bridgeCount.all || 0 }}</div>
                 </div>
                 <div class="c-c-r">
                   <div class="c-header">本年已检测</div>
-                  <div class="c-content">56</div>
+                  <div class="c-content">{{ bridgeCount.thisYear || 0 }}</div>
                 </div>
               </div>
             </div>
@@ -57,7 +68,7 @@
             <div class="dse-c-main">
               <div class="circle">
                 <p>
-                  <span class="bg-color">32%</span>
+                  <span class="bg-color">{{ lengthCount.proportion || 0 }}%</span>
                   <br />
                   <span class="dse-color">检测占比</span>
                 </p>
@@ -65,11 +76,11 @@
               <div class="content-cir">
                 <div class="c-c-l">
                   <div class="c-header">检测总里程</div>
-                  <div class="c-content">98m</div>
+                  <div class="c-content">{{ lengthCount.all || 0 }}m</div>
                 </div>
                 <div class="c-c-r">
                   <div class="c-header">本年已检测</div>
-                  <div class="c-content">56m</div>
+                  <div class="c-content">{{ lengthCount.thisYear || 0 }}m</div>
                 </div>
               </div>
             </div>
@@ -150,7 +161,7 @@
                 :options="highcharts3.options"
                 :styles="highcharts3.styles"
               ></highcharts>
-              <div style="position: absolute; top: -5px; right: 75px; color: #fff">
+              <div style="position: absolute; top: -6px; right: 75px; color: #fff">
                 病害总数：<span style="font-size: 16px; color: rgba(236, 72, 72, 1)">{{
                   diseaseCount
                 }}</span>
@@ -173,48 +184,18 @@
               </div>
             </div>
             <div class="b-c-content" style="overflow-y: auto">
-              <div style="height: 170px; width: 195px">
-                <el-image
+              <div
+                style="height: 170px; width: 195px"
+                v-for="(item, idx) in srcList"
+                :key="idx"
+              >
+                <img
                   style="width: 100%; height: 140px; border: 1px solid #1a7683"
-                  :src="url"
-                  :preview-src-list="srcList"
-                >
-                </el-image>
+                  :src="item"
+                  @click="showImg(idx)"
+                />
                 <div class="dse_img">
-                  SH-ZLH-S01_190405_K1195+482_0001-001-1-00-01_CK_VL-R
-                </div>
-              </div>
-              <div style="height: 140px; width: 195px">
-                <el-image
-                  style="width: 100%; height: 140px; border: 1px solid #1a7683"
-                  :src="url"
-                  :preview-src-list="srcList"
-                >
-                </el-image>
-                <div class="dse_img">
-                  SH-ZLH-S01_190405_K1195+482_0001-001-1-00-01_CK_VL-R
-                </div>
-              </div>
-              <div style="height: 140px; width: 195px">
-                <el-image
-                  style="width: 100%; height: 140px; border: 1px solid #1a7683"
-                  :src="url"
-                  :preview-src-list="srcList"
-                >
-                </el-image>
-                <div class="dse_img">
-                  SH-ZLH-S01_190405_K1195+482_0001-001-1-00-01_CK_VL-R
-                </div>
-              </div>
-              <div style="height: 140px; width: 195px">
-                <el-image
-                  style="width: 100%; height: 140px; border: 1px solid #1a7683"
-                  :src="url"
-                  :preview-src-list="srcList"
-                >
-                </el-image>
-                <div class="dse_img">
-                  SH-ZLH-S01_190405_K1195+482_0001-001-1-00-01_CK_VL-R
+                  {{ item }}
                 </div>
               </div>
             </div>
@@ -256,6 +237,14 @@
     <!-- <Modal v-model="modal11" fullscreen title="BIM展示" footer-hide>
       <b-i-m></b-i-m>
     </Modal> -->
+
+    <tky-image-view
+      :filePreviewShow="isShowImg"
+      :imgList="srcList"
+      title='病害图'
+      :currentIndex="currentIndex"
+      @parentMethod="cancel"
+    ></tky-image-view>
   </div>
 </template>
 
@@ -264,9 +253,17 @@ import headerCH from "@/components/home/header";
 import highcharts from "@/components/home/highcharts";
 import BIM from "@/components/home/BIM";
 // import  '@supermap/vue-iclient3d-webgl/dist/styles/vue-iclient3d-webgl.min.css';\
-import { getBridgeDetectionCountMil, getDiseaseLevel } from "@/api/largeScreen.js";
+import {
+  getBridgeDetectionCountMil,
+  getDiseaseLevel,
+  getDetectionBridgeCount,
+  getDetectionLengthCount,
+  getFlyMileCount,
+  getFlyTimeCount,
+} from "@/api/largeScreen.js";
+import TkyImageView from "./tky/TkyImageView.vue";
 export default {
-  components: { headerCH, highcharts, BIM },
+  components: { headerCH, highcharts, BIM, TkyImageView },
   name: "home",
   data() {
     return {
@@ -277,9 +274,18 @@ export default {
       highcharts1: {},
       highcharts2: {},
       highcharts3: {},
+      bridgeCount: {},
+      lengthCount: {},
+      flyMileCount: {},
+      flyTimeCount: {},
+      lengthCount: {},
       diseaseCount: 0,
-      url: "../assets/image/1.PNG",
-      srcList: ["../assets/image/1.PNG", "../assets/image/1.PNG"],
+      url:
+        "https://pro-nianhua-bucket-deepxi.obs.cn-southwest-2.myhuaweicloud.com/dr-prd%2Fconsole%2Ffile%2Ff5771901-511f-4fed-bdf9-184e346920ce.jpg",
+      srcList: [
+        "https://pro-nianhua-bucket-deepxi.obs.cn-southwest-2.myhuaweicloud.com/dr-prd%2Fconsole%2Ffile%2Ff5771901-511f-4fed-bdf9-184e346920ce.jpg",
+        "https://pro-nianhua-bucket-deepxi.obs.cn-southwest-2.myhuaweicloud.com/dr-prd%2Fconsole%2Ffile%2Ff5771901-511f-4fed-bdf9-184e346920ce.jpg",
+      ],
       popupDisplay: false,
       popupOpcatity: 1.0,
       popupLeft: "",
@@ -288,6 +294,8 @@ export default {
       isLeft: true,
       isRight: true,
       modal11: false,
+      isShowImg: false,
+      currentIndex: 0,
     };
   },
   methods: {
@@ -524,6 +532,22 @@ export default {
         });
         this.initCharts2(res.result);
         this.initCharts3(res.result);
+      });
+
+      getDetectionBridgeCount().then((res) => {
+        res.result.proportion = parseInt((res.result.thisYear / res.result.all) * 100);
+        this.bridgeCount = res.result;
+      });
+      getDetectionLengthCount().then((res) => {
+        res.result.proportion = parseInt((res.result.thisYear / res.result.all) * 100);
+        this.lengthCount = res.result;
+      });
+
+      getFlyMileCount().then((res) => {
+        this.flyMileCount = res.result;
+      });
+      getFlyTimeCount().then((res) => {
+        this.flyTimeCount = res.result;
       });
     },
     initCharts1(data) {
@@ -818,6 +842,14 @@ export default {
       };
     },
 
+    cancel() {
+      this.isShowImg = false;
+    },
+    showImg(idx) {
+      this.isShowImg = true;
+      this.currentIndex = idx;
+    },
+
     openBim() {
       // let that=this;
       // that.modal11=true;
@@ -917,6 +949,7 @@ export default {
           font-size: 24px;
           font-weight: bold;
           color: #29b3d5;
+          padding-left: 10px;
         }
         span {
           font-size: 14px;

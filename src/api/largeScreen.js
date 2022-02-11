@@ -74,3 +74,31 @@ export function queryDiseaseUrlList(parameter) {
     data: parameter
   })
 }
+
+
+/**
+ * 飞行总里程
+ * @param {*} parameter 
+ * @returns 
+ */
+export function getFlyMileCount(parameter) {
+  return axios({
+    url: '/moudle/api/flyMileCount',
+    method: 'get',
+    data: parameter
+  })
+}
+
+
+/**
+ * 飞行总时间
+ * @param {*} parameter 
+ * @returns 
+ */
+export function getFlyTimeCount(parameter) {
+  return axios({
+    url: '/moudle/api/flyTimeCount',
+    method: 'get',
+    data: parameter
+  })
+}

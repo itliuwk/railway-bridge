@@ -347,7 +347,6 @@ export default {
     getImage(record) {
       let object = Object.assign({}, record);
       this.getImageCode = "";
-      debugger;
       let parameter = {
         name: object.imgName,
         url: object.imgUrl,
@@ -369,7 +368,6 @@ export default {
           const src = window.URL.createObjectURL(blob); //这里也是关键,调用window的这个方法URL方法
           this.getImageCode = src;
           this.imgList.push(this.getImageCode);
-          debugger;
           console.log(this.imgList);
           console.log(this.imgList.length);
           if (this.imgList.length >= 1) this.currentIndex = this.imgList.length - 1;

@@ -127,7 +127,7 @@
       },
       //登录成功
       loginSuccess () {
-        this.$router.push({ path: "/dashboard/analysis" }).catch(()=>{
+        this.$router.push({ path: "/largeScreen/index" }).catch(()=>{
           console.log('登录跳转首页出错,这个错误从哪里来的')
         })
         this.$notification.success({
