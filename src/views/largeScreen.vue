@@ -93,10 +93,11 @@
             </div>
             <div class="b-c-content">
               <highcharts
+                v-if="highcharts1.options"
                 ref="highcharts"
-                :highcharts-i-d="highcharts.highchartsID"
-                :options="highcharts.options"
-                :styles="highcharts.styles"
+                :highcharts-i-d="highcharts1.highchartsID"
+                :options="highcharts1.options"
+                :styles="highcharts1.styles"
               ></highcharts>
             </div>
           </div>
@@ -117,10 +118,11 @@
             </div>
             <div class="b-c-content">
               <highcharts
+                v-if="highcharts2.options"
                 ref="highcharts"
-                :highcharts-i-d="highcharts1.highchartsID"
-                :options="highcharts1.options"
-                :styles="highcharts1.styles"
+                :highcharts-i-d="highcharts2.highchartsID"
+                :options="highcharts2.options"
+                :styles="highcharts2.styles"
               >
               </highcharts>
             </div>
@@ -143,14 +145,15 @@
             <div class="b-c-content" style="position: relative">
               <highcharts
                 ref="highcharts"
-                :highcharts-i-d="highcharts2.highchartsID"
-                :options="highcharts2.options"
-                :styles="highcharts2.styles"
+                v-if="highcharts3.options"
+                :highcharts-i-d="highcharts3.highchartsID"
+                :options="highcharts3.options"
+                :styles="highcharts3.styles"
               ></highcharts>
-              <div style="position: absolute; top: -5px; right: 75px">
-                病害总数：<span style="font-size: 16px; color: rgba(236, 72, 72, 1)"
-                  >456</span
-                >
+              <div style="position: absolute; top: -5px; right: 75px; color: #fff">
+                病害总数：<span style="font-size: 16px; color: rgba(236, 72, 72, 1)">{{
+                  diseaseCount
+                }}</span>
               </div>
             </div>
           </div>
@@ -259,9 +262,9 @@
 <script>
 import headerCH from "@/components/home/header";
 import highcharts from "@/components/home/highcharts";
-
 import BIM from "@/components/home/BIM";
-// import  '@supermap/vue-iclient3d-webgl/dist/styles/vue-iclient3d-webgl.min.css';
+// import  '@supermap/vue-iclient3d-webgl/dist/styles/vue-iclient3d-webgl.min.css';\
+import { getBridgeDetectionCountMil, getDiseaseLevel } from "@/api/largeScreen.js";
 export default {
   components: { headerCH, highcharts, BIM },
   name: "home",
@@ -271,308 +274,10 @@ export default {
       popup: "",
       point_overlay: "",
       overall_lastfeature: "",
-      highcharts: {
-        highchartsID: "highchartsRainModal",
-        options: {
-          chart: {
-            type: "spline",
-            marginTop: 40,
-            marginLeft: 0,
-            marginRight: 0,
-            backgroundColor: "rgba(26, 118, 131, 0)",
-          },
-          plotOptions: {
-            spline: {
-              marker: {
-                enabled: false,
-              },
-            },
-          },
-          title: {
-            text: "",
-          },
-          xAxis: {
-            lineColor: "rgba(4, 187, 255, 1)",
-            tickInterval: 2,
-            categories: ["2015", "2016", "2017", "2018", "2019", "2020", "2021"],
-            crosshair: true,
-            labels: {
-              style: {
-                color: "#ffffff",
-              },
-            },
-          },
-          yAxis: [
-            {
-              gridLineDashStyle: "longdash",
-              gridLineColor: "rgba(4, 187, 255, .5)",
-              floor: 200,
-              ceiling: 1500,
-              tickInterval: 200,
-              title: {
-                text: "里程（m）",
-                align: "high",
-                offset: -62,
-                rotation: 0,
-                y: -30,
-                style: {
-                  color: "#ffffff",
-                },
-              },
-              labels: {
-                align: "left",
-                x: 0,
-                y: -10,
-                format: "{value:.,0f}",
-                style: {
-                  color: "#ffffff",
-                },
-              },
-              // showFirstLabel: false
-            },
-            {
-              opposite: true, // 通过此参数设置坐标轴显示在对立面
-              floor: 0,
-              ceiling: 10,
-              tickInterval: 1,
-              gridLineDashStyle: "longdash",
-              gridLineColor: "rgba(4, 187, 255, .5)",
-              title: {
-                text: "座数（个）",
-                align: "high",
-                offset: -57,
-                rotation: 0,
-                y: -30,
-                style: {
-                  color: "#ffffff",
-                },
-              },
-              labels: {
-                align: "right",
-                x: 0,
-                y: -10,
-                format: "{value:.,0f}",
-                style: {
-                  color: "#ffffff",
-                },
-              },
-              // showFirstLabel: false
-            },
-          ],
-          legend: {
-            align: "right",
-            verticalAlign: "top",
-            x: -70,
-            y: -17,
-            floating: true,
-            borderWidth: 0,
-            symbolRadius: 0,
-          },
-          tooltip: {
-            shared: true,
-            useHTML: true,
-          },
-          series: [
-            {
-              name: "检测里程",
-              type: "spline",
-              yAxis: 0,
-              data: [400, 500, 600, 700, 500, 400, 800],
-              color: "rgba(255, 252, 0, 1)",
-            },
-            {
-              name: "座数",
-              type: "spline",
-              yAxis: 1,
-              data: [1, 4, 3, 7, 3, 6, 7],
-              color: "rgba(79, 248, 255, 1)",
-            },
-          ],
-          // navigation: {
-          //   menuItemStyle: {
-          //     fontSize: '10px'
-          //   }
-          // },
-          credits: { enabled: false },
-        },
-        styles: {
-          width: "100%",
-          height: 180,
-        },
-      },
-      highcharts1: {
-        highchartsID: "highchartsRainModal1",
-        options: {
-          chart: {
-            type: "variablepie",
-            // marginTop: 40,
-            // marginLeft: 0,
-            // marginRight: 0,
-            backgroundColor: "rgba(26, 118, 131, 0)",
-          },
-          title: {
-            text: "",
-          },
-          plotOptions: {
-            variablepie: {
-              allowPointSelect: true,
-              cursor: "pointer",
-              dataLabels: {
-                enabled: false,
-              },
-              showInLegend: true,
-            },
-          },
-          legend: {
-            layout: "vertical",
-            align: "right",
-            verticalAlign: "middle",
-            itemMarginBottom: 10,
-            itemMarginTop: 5,
-            labelFormatter: function () {
-              return this.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + this.y;
-            },
-          },
-          series: [
-            {
-              minPointSize: 10,
-              innerSize: "20%",
-              zMin: 0,
-              name: "countries",
-              data: [
-                {
-                  color: "rgba(0, 247, 255, 1)",
-                  name: "损失等级AA",
-                  y: 16,
-                  z: 40,
-                },
-                {
-                  color: "rgba(1, 52, 155, 1)",
-                  name: "损失等级A",
-                  y: 22,
-                  z: 50,
-                },
-                {
-                  color: "rgba(254, 239, 77, 1)",
-                  name: "损失等级B",
-                  y: 26,
-                  z: 80,
-                },
-                {
-                  color: "rgba(168, 168, 168, 1)",
-                  name: "损失等级C",
-                  y: 28,
-                  z: 140,
-                },
-              ],
-            },
-          ],
-          credits: { enabled: false },
-        },
-        styles: {
-          width: "100%",
-          height: 180,
-        },
-      },
-      highcharts2: {
-        highchartsID: "highchartsRainModal2",
-        options: {
-          chart: {
-            type: "column",
-            marginTop: 40,
-            marginLeft: 0,
-            marginRight: 0,
-            backgroundColor: "rgba(26, 118, 131, 0)",
-          },
-          plotOptions: {
-            spline: {
-              marker: {
-                enabled: false,
-              },
-            },
-          },
-          title: {
-            text: "",
-          },
-          xAxis: {
-            lineColor: "rgba(4, 187, 255, 1)",
-            tickInterval: 2,
-            categories: [
-              "钢梁铆钉",
-              "钢梁铆钉",
-              "钢梁铆钉",
-              "钢梁铆钉",
-              "钢梁铆钉",
-              "钢梁铆钉",
-            ],
-            crosshair: true,
-            labels: {
-              style: {
-                color: "#ffffff",
-              },
-            },
-          },
-          yAxis: [
-            {
-              gridLineDashStyle: "longdash",
-              gridLineColor: "rgba(4, 187, 255, .5)",
-
-              title: {
-                text: "单位（个）",
-                align: "high",
-                offset: -62,
-                rotation: 0,
-                y: -30,
-                style: {
-                  color: "#ffffff",
-                },
-              },
-              labels: {
-                align: "left",
-                x: 0,
-                y: -10,
-                format: "{value:.,0f}",
-                style: {
-                  color: "#ffffff",
-                },
-              },
-              // showFirstLabel: false
-            },
-          ],
-          legend: {
-            align: "right",
-            verticalAlign: "top",
-            x: 0,
-            y: -17,
-            floating: true,
-            borderWidth: 0,
-            symbolRadius: 0,
-          },
-          tooltip: {
-            shared: true,
-            useHTML: true,
-          },
-          series: [
-            {
-              name: "病害",
-              data: [15, 40, 52, 18, 20, 44],
-              color: "rgba(143, 223, 254, .8)",
-              borderColor: "#7DD8FE",
-              maxPointWidth: 20,
-            },
-          ],
-          // navigation: {
-          //   menuItemStyle: {
-          //     fontSize: '10px'
-          //   }
-          // },
-          credits: { enabled: false },
-        },
-        styles: {
-          width: "100%",
-          height: 180,
-        },
-      },
+      highcharts1: {},
+      highcharts2: {},
+      highcharts3: {},
+      diseaseCount: 0,
       url: "../assets/image/1.PNG",
       srcList: ["../assets/image/1.PNG", "../assets/image/1.PNG"],
       popupDisplay: false,
@@ -673,7 +378,7 @@ export default {
         [promise1, promise2, promise3, promise4, promise5],
         function (layers) {
           that.viewer.camera.flyTo({
-            destination: Cesium.Cartesian3.fromDegrees(
+            destination: new Cesium.Cartesian3.fromDegrees(
               113.249753578609,
               38.5248505060184,
               2000 //设置镜头拉近高度用/ 拉远用*
@@ -742,7 +447,7 @@ export default {
           height = 25;
         let objs = {
           id: i,
-          position: Cesium.Cartesian3.fromDegrees(
+          position: new Cesium.Cartesian3.fromDegrees(
             data[i].lgtd,
             data[i].lttd,
             data[i].height
@@ -805,6 +510,314 @@ export default {
       //   this.popupDisplay = false;
       // }
     },
+    initCharts() {
+      getBridgeDetectionCountMil().then((res) => {
+        this.initCharts1(res.result);
+      });
+
+      getDiseaseLevel().then((res) => {
+        res.result.map((item) => {
+          item.name = item.levelCode;
+          item.y = item.levelCount;
+          item.z = item.levelCount;
+          return item;
+        });
+        this.initCharts2(res.result);
+        this.initCharts3(res.result);
+      });
+    },
+    initCharts1(data) {
+      let xAxis = data.map((item) => item.detectYear);
+      let lengthSums = data.map((item) => item.lengthSum);
+      let countSums = data.map((item) => item.countSum);
+      this.highcharts1 = {
+        highchartsID: "highchartsRainModal",
+        options: {
+          chart: {
+            type: "spline",
+            marginTop: 40,
+            marginLeft: 0,
+            marginRight: 0,
+            backgroundColor: "rgba(26, 118, 131, 0)",
+          },
+          plotOptions: {
+            spline: {
+              marker: {
+                enabled: false,
+              },
+            },
+          },
+          title: {
+            text: "",
+          },
+          xAxis: {
+            lineColor: "rgba(4, 187, 255, 1)",
+            tickInterval: 2,
+            categories: xAxis,
+            crosshair: true,
+            labels: {
+              style: {
+                color: "#ffffff",
+              },
+            },
+          },
+          yAxis: [
+            {
+              gridLineDashStyle: "longdash",
+              gridLineColor: "rgba(4, 187, 255, .5)",
+              floor: 200,
+              ceiling: 1500,
+              tickInterval: 200,
+              title: {
+                text: "里程（m）",
+                align: "high",
+                offset: -62,
+                rotation: 0,
+                y: -30,
+                style: {
+                  color: "#ffffff",
+                },
+              },
+              labels: {
+                align: "left",
+                x: 0,
+                y: -10,
+                format: "{value:.,0f}",
+                style: {
+                  color: "#ffffff",
+                },
+              },
+              // showFirstLabel: false
+            },
+            {
+              opposite: true, // 通过此参数设置坐标轴显示在对立面
+              floor: 0,
+              ceiling: 10,
+              tickInterval: 1,
+              gridLineDashStyle: "longdash",
+              gridLineColor: "rgba(4, 187, 255, .5)",
+              title: {
+                text: "座数（个）",
+                align: "high",
+                offset: -57,
+                rotation: 0,
+                y: -30,
+                style: {
+                  color: "#ffffff",
+                },
+              },
+              labels: {
+                align: "right",
+                x: 0,
+                y: -10,
+                format: "{value:.,0f}",
+                style: {
+                  color: "#ffffff",
+                },
+              },
+              // showFirstLabel: false
+            },
+          ],
+          legend: {
+            align: "right",
+            verticalAlign: "top",
+            x: -70,
+            y: -17,
+            floating: true,
+            borderWidth: 0,
+            symbolRadius: 0,
+          },
+          tooltip: {
+            shared: true,
+            useHTML: true,
+          },
+          series: [
+            {
+              name: "检测里程",
+              type: "spline",
+              yAxis: 0,
+              data: lengthSums,
+              color: "rgba(255, 252, 0, 1)",
+            },
+            {
+              name: "座数",
+              type: "spline",
+              yAxis: 1,
+              data: countSums,
+              color: "rgba(79, 248, 255, 1)",
+            },
+          ],
+          // navigation: {
+          //   menuItemStyle: {
+          //     fontSize: '10px'
+          //   }
+          // },
+          credits: { enabled: false },
+        },
+        styles: {
+          width: "100%",
+          height: 180,
+        },
+      };
+    },
+    initCharts2(data) {
+      this.highcharts2 = {
+        highchartsID: "highchartsRainModal1",
+        options: {
+          chart: {
+            type: "variablepie",
+            // marginTop: 40,
+            // marginLeft: 0,
+            // marginRight: 0,
+            backgroundColor: "rgba(26, 118, 131, 0)",
+          },
+          title: {
+            text: "",
+          },
+          plotOptions: {
+            variablepie: {
+              allowPointSelect: true,
+              cursor: "pointer",
+              dataLabels: {
+                enabled: false,
+              },
+              showInLegend: true,
+            },
+          },
+          legend: {
+            layout: "vertical",
+            align: "right",
+            verticalAlign: "middle",
+            itemMarginBottom: 10,
+            itemMarginTop: 5,
+            labelFormatter: function () {
+              return this.name + "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" + this.y || 0;
+            },
+          },
+          tooltip: {
+            headerFormat: "",
+            pointFormat:
+              '<span style="color:{point.color}">\u25CF</span> <b> {point.name}</b><br/>' +
+              "数量: <b>{point.y}</b><br/>",
+          },
+          series: [
+            {
+              minPointSize: 10,
+              innerSize: "20%",
+              zMin: 0,
+              name: "countries",
+              data,
+            },
+          ],
+          credits: { enabled: false },
+        },
+        styles: {
+          width: "100%",
+          height: 180,
+        },
+      };
+    },
+
+    initCharts3(data) {
+      let xAxis = data.map((item) => item.levelCode);
+      let levelCounts = data.map((item) => item.levelCount);
+      this.diseaseCount = data.reduce((val, cur) => {
+        return val + cur.levelCount;
+      }, 0);
+      this.highcharts3 = {
+        highchartsID: "highchartsRainModal2",
+        options: {
+          chart: {
+            type: "column",
+            marginTop: 40,
+            marginLeft: 0,
+            marginRight: 0,
+            backgroundColor: "rgba(26, 118, 131, 0)",
+          },
+          plotOptions: {
+            spline: {
+              marker: {
+                enabled: false,
+              },
+            },
+          },
+          title: {
+            text: "",
+          },
+          xAxis: {
+            lineColor: "rgba(4, 187, 255, 1)",
+            tickInterval: 2,
+            categories: xAxis,
+            crosshair: true,
+            labels: {
+              style: {
+                color: "#ffffff",
+              },
+            },
+          },
+          yAxis: [
+            {
+              gridLineDashStyle: "longdash",
+              gridLineColor: "rgba(4, 187, 255, .5)",
+
+              title: {
+                text: "单位（个）",
+                align: "high",
+                offset: -62,
+                rotation: 0,
+                y: -30,
+                style: {
+                  color: "#ffffff",
+                },
+              },
+              labels: {
+                align: "left",
+                x: 0,
+                y: -10,
+                format: "{value:.,0f}",
+                style: {
+                  color: "#ffffff",
+                },
+              },
+              // showFirstLabel: false
+            },
+          ],
+          legend: {
+            align: "right",
+            verticalAlign: "top",
+            x: 0,
+            y: -17,
+            floating: true,
+            borderWidth: 0,
+            symbolRadius: 0,
+          },
+          tooltip: {
+            shared: true,
+            useHTML: true,
+          },
+          series: [
+            {
+              name: "病害",
+              data: levelCounts,
+              color: "rgba(143, 223, 254, .8)",
+              borderColor: "#7DD8FE",
+              maxPointWidth: 20,
+            },
+          ],
+          // navigation: {
+          //   menuItemStyle: {
+          //     fontSize: '10px'
+          //   }
+          // },
+          credits: { enabled: false },
+        },
+        styles: {
+          width: "100%",
+          height: 180,
+        },
+      };
+    },
+
     openBim() {
       // let that=this;
       // that.modal11=true;
@@ -812,6 +825,7 @@ export default {
   },
   mounted() {
     let that = this;
+    this.initCharts();
     this.$nextTick(() => {
       this.initMap();
       this.mapFun();
