@@ -296,6 +296,7 @@ export default {
       modal11: false,
       isShowImg: false,
       currentIndex: 0,
+      viewer: null,
     };
   },
   methods: {
@@ -386,7 +387,7 @@ export default {
         [promise1, promise2, promise3, promise4, promise5],
         function (layers) {
           that.viewer.camera.flyTo({
-            destination: new Cesium.Cartesian3.fromDegrees(
+            destination: Cesium.Cartesian3.fromDegrees(
               113.249753578609,
               38.5248505060184,
               2000 //设置镜头拉近高度用/ 拉远用*
@@ -448,7 +449,7 @@ export default {
     },
 
     addMarker(data) {
-      for (let i = 0; i <= data.length; i++) {
+      for (let i = 0; i < data.length; i++) {
         let item = data[i];
         let img = "../../assets/image/map_icon.png",
           width = 25,
@@ -555,7 +556,6 @@ export default {
           const element = res.result[index];
           data.push(Vue.prototype.API_BASE_URL + "/" + element);
         }
-        console.log("res.result: ", data);
         this.srcList = data;
       });
     },
